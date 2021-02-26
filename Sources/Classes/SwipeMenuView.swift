@@ -285,6 +285,11 @@ open class SwipeMenuView: UIView {
         guard let tabView = tabView, let contentScrollView = contentScrollView else { return }
         if currentIndex != index {
             delegate?.swipeMenuView(self, willChangeIndexFrom: currentIndex, to: index)
+            // https://github.com/yysskk/SwipeMenuViewController/issues/100#issuecomment-689661724
+            isJumping = true // This was added to fix the jump() as it wasn't working
+        } else {
+            // this was added to fix the jump() as it wasnt working
+            isJumping = false
         }
         jumpingToIndex = index
 
